@@ -1,0 +1,22 @@
+$def with (body,title,author,date)
+
+<html>
+	<head>
+		<title>TL;DR</title>
+	</head>
+	<body>
+	<form action="/summary" method="post">
+		URL    :<br>
+		<input type="url" name="url" id="url"><br>
+		# of lines:<br>
+		<input type="number" name="lines" id="lines"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	$if body:
+		<h1 style = "font-family:courier;">$title</h1>
+		<h3 style = "font-family:courier;">By: $author</h3>
+		<h3 style = "font-family:courier;">At: $date</h3>
+		<p style = "font-family:courier; font-size: 20px;">$body</p>
+	$else:
+	</body>
+</html>
