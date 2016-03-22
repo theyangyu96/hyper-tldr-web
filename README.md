@@ -1,11 +1,7 @@
-basic-webpy-heroku-app
+Hyper TLDR Web
 ======================
+Let's admit it - we are all lazy. That's why I built the [Hyper-TLDR website](https://hyper-tldr.herokuapp.com/).
+Paste in any link and how long you are wiling to read, and viola.
 
-A really basic web.py app to experiment with web.py and Heroku.
-
-Resources
 ---------
-
-https://devcenter.heroku.com/articles/getting-started-with-python
-
-http://webpy.org/
+Built with web.py, [AYLIEN](http://aylien.com/), deployed on Heroku.
