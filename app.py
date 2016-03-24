@@ -27,8 +27,8 @@ class summary:
 		r = requests.post(url, data=json.dumps(payload), headers=head)
 		try:
 			smry = r.json()["sentences"]
-		except Error:
-			return render.index(body="error",title="",date="",author="")
+		except:
+			return render.index(body="an error occurred while getting TL;DR",title="",date="",author="")
 		val = ""
 		for s in smry:
 			val+=(s+"\n");
@@ -53,7 +53,7 @@ class summary:
 		r = requests.post(url, data=json.dumps(payload), headers=head)
 		try:
 			smry = r.json()["sentences"]
-		except ValueError:
+		except :
 			return render.index(body="error",title="",date="",author="")
 		val = ""
 		for s in smry:
