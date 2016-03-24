@@ -27,7 +27,7 @@ class summary:
 		r = requests.post(url, data=json.dumps(payload), headers=head)
 		try:
 			smry = r.json()["sentences"]
-		except ValueError:
+		except Error:
 			return render.index(body="error",title="",date="",author="")
 		val = ""
 		for s in smry:
