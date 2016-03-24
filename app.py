@@ -1,6 +1,7 @@
 import web
 import json
 import requests
+import urllib2
 
 urls = (
 	'/', 'index', 
@@ -23,15 +24,18 @@ class summary:
 		form = web.input()
 		if(form.url == None or form.lines == None or form.url == "" or form.lines == ""):
 			return render.index(body="",title="",date="",author="")
-		url = 'https://api.aylien.com/api/v1/summarize?url=%s&sentences_number=%s' %(form.url,form.lines)
+		url = 'https://api.aylien.com/api/v1/summarize?url=%s&sentences_number=%s' %(urllib2.quote(form.url.encode('utf-8')),form.lines)
 		payload = {}
 		head = { "X-AYLIEN-TextAPI-Application-Key": "68188d3a9d107b0f84480d7429a463f5","X-AYLIEN-TextAPI-Application-ID": "d974775d"}
 		r = requests.post(url, data=json.dumps(payload), headers=head)
-		smry = r.json()["sentences"]
+		try:
+			smry = r.json()["sentences"]
+		except ValueError:
+			return render.index(body="error",title="",date="",author="")
 		val = ""
 		for s in smry:
 			val+=(s+"\n");
-		url = 'https://api.aylien.com/api/v1/extract?url=%s' %(form.url)
+		url = 'https://api.aylien.com/api/v1/extract?url=%s' %(urllib2.quote(form.url.encode('utf-8')))
 		payload = {}
 		head = { "X-AYLIEN-TextAPI-Application-Key": "68188d3a9d107b0f84480d7429a463f5","X-AYLIEN-TextAPI-Application-ID": "d974775d"}
 		r = requests.post(url, data=json.dumps(payload), headers=head)
